@@ -8,8 +8,7 @@ class Settings(BaseSettings):
     app_env: str = "development"
     mock_services: bool = True
 
-    class Config:
-        env_file = ".env"
+    model_config = {"env_file": ".env"}
 
 
 settings = Settings()
