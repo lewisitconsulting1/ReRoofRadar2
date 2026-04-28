@@ -1,6 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
-import { type ReactNode, useEffect } from 'react'
+import { type ReactNode } from 'react'
 
 interface ProtectedRouteProps {
   children: ReactNode
@@ -9,12 +9,6 @@ interface ProtectedRouteProps {
 function ProtectedRoute({ children }: ProtectedRouteProps): JSX.Element {
   const { isAuthenticated, isLoading } = useAuth()
   const location = useLocation()
-
-  useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      window.location.href = '/login'
-    }
-  }, [isLoading, isAuthenticated])
 
   if (isLoading) {
     return (
@@ -28,7 +22,7 @@ function ProtectedRoute({ children }: ProtectedRouteProps): JSX.Element {
     return <Navigate to="/login" state={{ from: location }} replace />
   }
 
-  return children as JSX.Element
+  return <>{children}</>
 }
 
 export { ProtectedRoute }
