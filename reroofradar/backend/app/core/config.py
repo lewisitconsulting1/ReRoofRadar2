@@ -7,6 +7,8 @@ class Settings(BaseSettings):
     secret_key: str = "change-me-in-production"
     app_env: str = "development"
     mock_services: bool = True
+    jwt_algorithm: str = "HS256"
+    access_token_expire_minutes: int = 60
 
     model_config = {"env_file": ".env"}
 
