@@ -8,6 +8,8 @@ class Settings(BaseSettings):
     app_env: str = "development"
     mock_services: bool = True
 
+    mapbox_token: str = ""
+
     model_config = {"env_file": ".env"}
 
 
