@@ -27,7 +27,14 @@ function App(): JSX.Element {
               </ProtectedRoute>
             }
           />
-          <Route path="*" element={<Dashboard />} />
+          <Route
+            path="*"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

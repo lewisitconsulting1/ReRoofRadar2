@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Download, Loader2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { api } from '@/lib/api'
+import { toast } from 'sonner'
 
 interface ExportButtonProps {
   campaignId: string
@@ -25,7 +26,7 @@ function ExportButton({ campaignId }: ExportButtonProps): JSX.Element {
       link.remove()
       window.URL.revokeObjectURL(url)
     } catch {
-      alert('Failed to export CSV. Please try again.')
+      toast.error('Failed to export CSV. Please try again.')
     } finally {
       setIsLoading(false)
     }
