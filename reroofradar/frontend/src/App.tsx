@@ -1,8 +1,9 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { AuthProvider } from '@/hooks/useAuth'
 import { ProtectedRoute } from '@/components/auth/ProtectedRoute'
 import { Login } from '@/pages/Login'
 import { Dashboard } from '@/pages/Dashboard'
+import { CampaignHistory } from '@/pages/CampaignHistory'
 
 function App(): JSX.Element {
   return (
@@ -18,8 +19,15 @@ function App(): JSX.Element {
               </ProtectedRoute>
             }
           />
-          <Route path="/campaigns" element={<Navigate to="/dashboard" replace />} />
-          <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          <Route
+            path="/campaigns"
+            element={
+              <ProtectedRoute>
+                <CampaignHistory />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="*" element={<Dashboard />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
